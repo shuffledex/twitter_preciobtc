@@ -1,0 +1,19 @@
+{
+  "name": "twitter-preciobtc",
+  "version": "1.0.0",
+  "description": "twitter",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-admin": "^5.12.1",
+    "lodash": "^4.17.10",
+    "node-cron": "^1.2.1",
+    "raven": "^2.6.2",
+    "twit": "^2.2.10"
+  }
+}
