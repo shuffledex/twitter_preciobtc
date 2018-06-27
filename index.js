@@ -48,12 +48,14 @@ admin.initializeApp({
 
 var db = admin.database();
 
-var msgBestTransferencia;
-var msgBestMercadopago;
-var msgBestRapipago;
-var msgBestWallet;
-var msgBestDeposito;
-var msgBestSellMercadopago;
+//var msgBestTransferencia;
+//var msgBestMercadopago;
+//var msgBestRapipago;
+//var msgBestWallet;
+//var msgBestDeposito;
+//var msgBestSellMercadopago;
+var msgCompra;
+var msgVenta;
 
 var refSitios = db.ref("sitios/ARS");
 refSitios.on("value", function(snapshot) {
@@ -212,12 +214,15 @@ refSitios.on("value", function(snapshot) {
 	});
 	var bestSellMercadopago = tableSort(addFee("sellMercadopago", onlySellMercadopago), "desc");
 
-	msgBestTransferencia = "Por Transferencia Bancaria el mejor precio de Compra lo encontrás en " + bestTransferencia[0].twitter + " a " + bestTransferencia[0].buy.toFixed(2) + " ARS (FEES INCLUIDOS).";
-	msgBestMercadopago = "Por Mercadopago el mejor precio de Compra lo encontrás en " + bestMercadopago[0].twitter + " a " + bestMercadopago[0].buy.toFixed(2) + " ARS (FEES INCLUIDOS).";
-	msgBestRapipago = "Por Rapipago/Pagofacil el mejor precio de Compra lo encontrás en " + bestRapipago[0].twitter + " a " + bestRapipago[0].buy.toFixed(2) + " ARS (FEES INCLUIDOS).";
-	msgBestWallet = "Por Wallet el mejor precio de Venta lo encontrás en " + bestWallet[0].twitter + " a " + bestWallet[0].sell.toFixed(2) + " ARS (FEES INCLUIDOS).";
-	msgBestDeposito = "Por Depósito Bancario el mejor precio de Venta lo encontrás en " + bestDeposito[0].twitter + " a " + bestDeposito[0].sell.toFixed(2) + " ARS (FEES INCLUIDOS).";
-	msgBestSellMercadopago = "Por Mercadopago el mejor precio de Venta lo encontrás en " + bestSellMercadopago[0].twitter + " a " + bestSellMercadopago[0].sell.toFixed(2) + " ARS (FEES INCLUIDOS).";
+	//msgBestTransferencia = "Por Transferencia Bancaria el mejor precio de Compra lo encontrás en " + bestTransferencia[0].twitter + " a " + bestTransferencia[0].buy.toFixed(2) + " ARS (FEES INCLUIDOS).";
+	//msgBestMercadopago = "Por Mercadopago el mejor precio de Compra lo encontrás en " + bestMercadopago[0].twitter + " a " + bestMercadopago[0].buy.toFixed(2) + " ARS (FEES INCLUIDOS).";
+	//msgBestRapipago = "Por Rapipago/Pagofacil el mejor precio de Compra lo encontrás en " + bestRapipago[0].twitter + " a " + bestRapipago[0].buy.toFixed(2) + " ARS (FEES INCLUIDOS).";
+	//msgBestWallet = "Por Wallet el mejor precio de Venta lo encontrás en " + bestWallet[0].twitter + " a " + bestWallet[0].sell.toFixed(2) + " ARS (FEES INCLUIDOS).";
+	//msgBestDeposito = "Por Depósito Bancario el mejor precio de Venta lo encontrás en " + bestDeposito[0].twitter + " a " + bestDeposito[0].sell.toFixed(2) + " ARS (FEES INCLUIDOS).";
+	//msgBestSellMercadopago = "Por Mercadopago el mejor precio de Venta lo encontrás en " + bestSellMercadopago[0].twitter + " a " + bestSellMercadopago[0].sell.toFixed(2) + " ARS (FEES INCLUIDOS).";
+
+	msgCompra = "TOP 3 Mejor Precio de Compra #BTC\n- por Transferencia Bancaria: " + bestTransferencia[0].twitter + " a " + bestTransferencia[0].buy.toFixed(2) + " ARS (FEES INCLUIDOS).\n- por Mercadopago: " + bestMercadopago[0].twitter + " a " + bestMercadopago[0].buy.toFixed(2) + " ARS (FEES INCLUIDOS).\n- por Rapipago/Pagofacil: " + bestRapipago[0].twitter + " a " + bestRapipago[0].buy.toFixed(2) + " ARS (FEES INCLUIDOS).";
+	msgVenta = "TOP 3 Mejor Precio de Venta #BTC\n- a Wallet: " + bestWallet[0].twitter + " a " + bestWallet[0].sell.toFixed(2) + " ARS (FEES INCLUIDOS).\n- a Depósito Bancario: " + bestDeposito[0].twitter + " a " + bestDeposito[0].sell.toFixed(2) + " ARS (FEES INCLUIDOS).\n- a Mercadopago: " + bestSellMercadopago[0].twitter + " a " + bestSellMercadopago[0].sell.toFixed(2) + " ARS (FEES INCLUIDOS).";
 
 }, function (errorObject) {
 	Raven.captureException(errorObject, { extra: { msg: "Twitter Bot - Error al leer en firebase" } });
@@ -226,12 +231,14 @@ refSitios.on("value", function(snapshot) {
 
 // cada 3 horas
 cron.schedule('0 */3 * * *', function(){
-	tweetPost(msgBestTransferencia);
-	tweetPost(msgBestMercadopago);
-	tweetPost(msgBestRapipago);
-	tweetPost(msgBestWallet);
-	tweetPost(msgBestDeposito);
-	tweetPost(msgBestSellMercadopago);
+	//tweetPost(msgBestTransferencia);
+	//tweetPost(msgBestMercadopago);
+	//tweetPost(msgBestRapipago);
+	//tweetPost(msgBestWallet);
+	//tweetPost(msgBestDeposito);
+	//tweetPost(msgBestSellMercadopago);
+	tweetPost(msgCompra);
+	tweetPost(msgVenta);
 })
 
 function tableSort(json, mode) {
