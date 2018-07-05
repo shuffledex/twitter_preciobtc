@@ -134,6 +134,17 @@ refSitios.on("value", function(snapshot) {
 		type: json["Ripio"].type
 	})
 	arr.push({
+		name: "Qubit",
+		buy: json["Qubit"].buy,
+		sell: json["Qubit"].sell,
+		timestamp: json["Qubit"].timestamp,
+		cargar: json["Qubit"].cargar,
+		comprar: json["Qubit"].comprar,
+		vender: json["Qubit"].vender,
+		retirar: json["Qubit"].retirar,
+		type: json["Qubit"].type
+	})
+	arr.push({
 		name: "Saldo",
 		buy: json["Saldo"].buy,
 		sell: json["Saldo"].sell,
