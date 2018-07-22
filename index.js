@@ -142,6 +142,7 @@ refSitios.on("value", function(snapshot) {
 		comprar: json["Qubit"].comprar,
 		vender: json["Qubit"].vender,
 		retirar: json["Qubit"].retirar,
+		twitter: json["Ripio"].twitter,
 		type: json["Qubit"].type
 	})
 	arr.push({
