@@ -6,8 +6,8 @@ var cron = require('node-cron');
 var config = require('./config.js');
 var Twitter = new twit(config);
 
-var Raven = require('raven');
-Raven.config('https://69f18dde66224e53acd47f44e31373ca@sentry.io/1222237').install();
+//var Raven = require('raven');
+//Raven.config('https://69f18dde66224e53acd47f44e31373ca@sentry.io/1222237').install();
 
 // STREAM BOT ==========================
 
@@ -22,7 +22,7 @@ function followed(eventmsg) {
     var screenName = eventmsg.source.screen_name;
     //since twitter blocks tweets of same type so we'll associate a
     //unique number using Math.random() or anything you like
-    tweetPost('Gracias @' + screenName + ' por el follow! deseamos que PrecioBTC.com te ayude a encontrar el mejor precio para tu próxima operación en Bitcoin. ' + Math.floor(Math.random()*10));
+    tweetPost('Gracias @' + screenName + ' por el follow! deseamos que PrecioBTC.com te ayude a encontrar el mejor precio para tu próxima operación en Bitcoin.');
 }
 //Posting the tweet!
 function tweetPost(msg) {
@@ -31,7 +31,7 @@ function tweetPost(msg) {
     }
     Twitter.post('statuses/update', tweet, function(err, data) {
         if (err) {
-        	Raven.captureException(err, { extra: { msg: msg } });
+        	//Raven.captureException(err, { extra: { msg: msg } });
             //console.log(err);
         } else {
             //console.log(data);
@@ -237,7 +237,7 @@ refSitios.on("value", function(snapshot) {
 	msgVenta = "TOP 3 Mejor Precio de Venta #BTC\n- a Wallet: " + bestWallet[0].twitter + " a " + bestWallet[0].sell.toFixed(2) + " ARS (FEES INCLUIDOS).\n- a Depósito Bancario: " + bestDeposito[0].twitter + " a " + bestDeposito[0].sell.toFixed(2) + " ARS (FEES INCLUIDOS).\n- a Mercadopago: " + bestSellMercadopago[0].twitter + " a " + bestSellMercadopago[0].sell.toFixed(2) + " ARS (FEES INCLUIDOS).";
 
 }, function (errorObject) {
-	Raven.captureException(errorObject, { extra: { msg: "Twitter Bot - Error al leer en firebase" } });
+	//Raven.captureException(errorObject, { extra: { msg: "Twitter Bot - Error al leer en firebase" } });
   //console.log("The read failed: " + errorObject.code);
 });
 
